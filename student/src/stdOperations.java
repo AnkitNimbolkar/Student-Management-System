@@ -326,6 +326,17 @@ public class stdOperations extends javax.swing.JFrame {
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         // TODO add your handling code here:
+        try{
+            stmt = conn.createStatement();
+            int stdid = Integer.parseInt(id.getText());
+            
+            String query = "DELETE FROM student WHERE std_id='"+stdid+"'";
+            stmt.executeUpdate(query);
+            
+            JOptionPane.showMessageDialog(null,"Student Data Is Deleted Successfully");            
+        }catch(HeadlessException | SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_deleteActionPerformed
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
