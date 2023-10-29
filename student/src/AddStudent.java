@@ -1,3 +1,8 @@
+
+import java.awt.HeadlessException;
+import java.sql.*;
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -12,8 +17,14 @@ public class AddStudent extends javax.swing.JFrame {
     /**
      * Creates new form AddStudent
      */
+    Connection conn = null;
+    Statement stmt = null;
+    ResultSet rs = null;
+    
     public AddStudent() {
+        super("addstudent");
         initComponents();
+        conn = databaseConnection.connect();
     }
 
     /**
@@ -36,6 +47,8 @@ public class AddStudent extends javax.swing.JFrame {
         PhoneNumber = new javax.swing.JFormattedTextField();
         className = new javax.swing.JComboBox<>();
         city = new javax.swing.JTextField();
+        Submit = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         Menu = new javax.swing.JMenu();
         Home = new javax.swing.JMenuItem();
@@ -68,6 +81,7 @@ public class AddStudent extends javax.swing.JFrame {
 
         name.setBackground(new java.awt.Color(255, 255, 255));
         name.setForeground(new java.awt.Color(0, 0, 0));
+        name.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameActionPerformed(evt);
@@ -89,7 +103,7 @@ public class AddStudent extends javax.swing.JFrame {
         className.setBackground(new java.awt.Color(0, 0, 0));
         className.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         className.setForeground(new java.awt.Color(255, 255, 255));
-        className.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "9th", "10th", "11th", "12th" }));
+        className.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "9", "10", "11", "12" }));
         className.setToolTipText("");
         className.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,6 +113,30 @@ public class AddStudent extends javax.swing.JFrame {
 
         city.setBackground(new java.awt.Color(255, 255, 255));
         city.setForeground(new java.awt.Color(0, 0, 0));
+
+        Submit.setBackground(new java.awt.Color(102, 255, 102));
+        Submit.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        Submit.setForeground(new java.awt.Color(0, 0, 0));
+        Submit.setIcon(new javax.swing.ImageIcon("G:\\Projects\\Java projects\\StudentManagement\\imgs\\submit.png")); // NOI18N
+        Submit.setText("Submit");
+        Submit.setPreferredSize(new java.awt.Dimension(96, 28));
+        Submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SubmitActionPerformed(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(51, 153, 255));
+        jButton2.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(0, 0, 0));
+        jButton2.setIcon(new javax.swing.ImageIcon("G:\\Projects\\Java projects\\StudentManagement\\imgs\\reset.png")); // NOI18N
+        jButton2.setText("Reset");
+        jButton2.setPreferredSize(new java.awt.Dimension(96, 28));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -114,12 +152,18 @@ public class AddStudent extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(55, 55, 55)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(PhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(name)
                     .addComponent(Mother, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                    .addComponent(city, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(className, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(42, Short.MAX_VALUE))
+                    .addComponent(className, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PhoneNumber)
+                    .addComponent(city))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(Submit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,7 +188,11 @@ public class AddStudent extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(city, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Submit, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17))
         );
 
         Menu.setIcon(new javax.swing.ImageIcon("G:\\Projects\\Java projects\\StudentManagement\\imgs\\menu_prev_ui.png")); // NOI18N
@@ -197,6 +245,29 @@ public class AddStudent extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_classNameActionPerformed
 
+    private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
+        // TODO add your handling code here:\
+        try{
+            stmt = conn.createStatement();
+            String Studname = name.getText();
+            String MotherName = Mother.getText();
+            String phoneNo = PhoneNumber.getText();
+            int Class = Integer.valueOf((String)className.getSelectedItem());
+            String cityName = city.getText();
+            
+            String query = "INSERT INTO student(std_name, std_mothername, std_class, std_city, std_phonenumber) VALUES('"+Studname+"','"+MotherName+"','"+Class+"','"+cityName+"','"+phoneNo+"')";
+            stmt.executeUpdate(query);
+            
+            JOptionPane.showMessageDialog(null,"Student Data Is Added Successfully");            
+        }catch(HeadlessException | SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_SubmitActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -237,8 +308,10 @@ public class AddStudent extends javax.swing.JFrame {
     private javax.swing.JMenu Menu;
     private javax.swing.JTextField Mother;
     private javax.swing.JFormattedTextField PhoneNumber;
+    private javax.swing.JButton Submit;
     private javax.swing.JTextField city;
     private javax.swing.JComboBox<String> className;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

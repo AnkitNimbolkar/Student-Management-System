@@ -70,6 +70,11 @@ public class Home extends javax.swing.JFrame {
         showStudents.setBackground(new java.awt.Color(153, 153, 255));
         showStudents.setIcon(new javax.swing.ImageIcon("G:\\Projects\\Java projects\\StudentManagement\\imgs\\show.png")); // NOI18N
         showStudents.setPreferredSize(new java.awt.Dimension(100, 100));
+        showStudents.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showStudentsActionPerformed(evt);
+            }
+        });
 
         addStudent.setBackground(new java.awt.Color(153, 153, 255));
         addStudent.setIcon(new javax.swing.ImageIcon("G:\\Projects\\Java projects\\StudentManagement\\imgs\\add.png")); // NOI18N
@@ -282,6 +287,9 @@ public class Home extends javax.swing.JFrame {
 
     private void addStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentActionPerformed
         // TODO add your handling code here:
+        setVisible(false);
+        AddStudent st = new AddStudent();
+        st.setVisible(true);
     }//GEN-LAST:event_addStudentActionPerformed
 
     private void aboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutActionPerformed
@@ -290,6 +298,13 @@ public class Home extends javax.swing.JFrame {
         About obj = new About();
         obj.setVisible(true);
     }//GEN-LAST:event_aboutActionPerformed
+
+    private void showStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showStudentsActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        showStudents st = new showStudents();
+        st.setVisible(true);
+    }//GEN-LAST:event_showStudentsActionPerformed
 
     /**
      * @param args the command line arguments
