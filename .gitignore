@@ -73,4 +73,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# others
+*.png
+*.jpeg
 # End of https://www.toptal.com/developers/gitignore/api/netbeans,java,windows,database

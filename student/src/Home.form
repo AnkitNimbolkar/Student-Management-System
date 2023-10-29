@@ -328,6 +328,9 @@
               <Dimension value="[100, 100]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MoreStudeActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="showAdmins">
           <Properties>

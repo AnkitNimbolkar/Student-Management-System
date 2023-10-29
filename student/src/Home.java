@@ -88,6 +88,11 @@ public class Home extends javax.swing.JFrame {
         MoreStude.setBackground(new java.awt.Color(153, 153, 255));
         MoreStude.setIcon(new javax.swing.ImageIcon("G:\\Projects\\Java projects\\StudentManagement\\imgs\\operations_prev_ui.png")); // NOI18N
         MoreStude.setPreferredSize(new java.awt.Dimension(100, 100));
+        MoreStude.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MoreStudeActionPerformed(evt);
+            }
+        });
 
         showAdmins.setBackground(new java.awt.Color(153, 153, 255));
         showAdmins.setIcon(new javax.swing.ImageIcon("G:\\Projects\\Java projects\\StudentManagement\\imgs\\show admin.png")); // NOI18N
@@ -305,6 +310,13 @@ public class Home extends javax.swing.JFrame {
         showStudents st = new showStudents();
         st.setVisible(true);
     }//GEN-LAST:event_showStudentsActionPerformed
+
+    private void MoreStudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoreStudeActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        stdOperations st = new stdOperations();
+        st.setVisible(true);
+    }//GEN-LAST:event_MoreStudeActionPerformed
 
     /**
      * @param args the command line arguments
