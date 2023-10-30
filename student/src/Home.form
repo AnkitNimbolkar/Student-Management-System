@@ -344,6 +344,9 @@
               <Dimension value="[100, 100]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showAdminsActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="addAdmin">
           <Properties>
@@ -357,6 +360,9 @@
               <Dimension value="[100, 100]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addAdminActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="MoreAdmin">
           <Properties>
@@ -371,6 +377,9 @@
               <Dimension value="[100, 100]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MoreAdminActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>

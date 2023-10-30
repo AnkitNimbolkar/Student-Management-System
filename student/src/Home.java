@@ -97,15 +97,30 @@ public class Home extends javax.swing.JFrame {
         showAdmins.setBackground(new java.awt.Color(153, 153, 255));
         showAdmins.setIcon(new javax.swing.ImageIcon("G:\\Projects\\Java projects\\StudentManagement\\imgs\\show admin.png")); // NOI18N
         showAdmins.setPreferredSize(new java.awt.Dimension(100, 100));
+        showAdmins.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showAdminsActionPerformed(evt);
+            }
+        });
 
         addAdmin.setBackground(new java.awt.Color(153, 153, 255));
         addAdmin.setIcon(new javax.swing.ImageIcon("G:\\Projects\\Java projects\\StudentManagement\\imgs\\add admin.png")); // NOI18N
         addAdmin.setPreferredSize(new java.awt.Dimension(100, 100));
+        addAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addAdminActionPerformed(evt);
+            }
+        });
 
         MoreAdmin.setBackground(new java.awt.Color(153, 153, 255));
         MoreAdmin.setIcon(new javax.swing.ImageIcon("G:\\Projects\\Java projects\\StudentManagement\\imgs\\operations_admin.png")); // NOI18N
         MoreAdmin.setText("jButton1");
         MoreAdmin.setPreferredSize(new java.awt.Dimension(100, 100));
+        MoreAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MoreAdminActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
@@ -317,6 +332,28 @@ public class Home extends javax.swing.JFrame {
         stdOperations st = new stdOperations();
         st.setVisible(true);
     }//GEN-LAST:event_MoreStudeActionPerformed
+
+    private void addAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAdminActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        addAdmin ad = new addAdmin();
+        ad.setVisible(true);
+    }//GEN-LAST:event_addAdminActionPerformed
+
+    private void showAdminsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showAdminsActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        showAdmin ad = new showAdmin();
+        ad.setVisible(true);
+        
+    }//GEN-LAST:event_showAdminsActionPerformed
+
+    private void MoreAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoreAdminActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        operationsAdmin ad = new operationsAdmin();
+        ad.setVisible(true);
+    }//GEN-LAST:event_MoreAdminActionPerformed
 
     /**
      * @param args the command line arguments
